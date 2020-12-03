@@ -93,6 +93,9 @@ def main(listen_port):
             # trying to open the file using file path
             try:
                 sending_file(data_list, client_socket)
+                # checking if connection status is close
+                if data_list[1] == 'close':
+                    client_socket.close()
             # if file doesn't exist - return 404 and close connection
             except FileNotFoundError:
                 not_found_404(client_socket)
